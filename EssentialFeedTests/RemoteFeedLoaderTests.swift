@@ -50,12 +50,23 @@ class RemoteFeedLoaderTest: XCTestCase {
     }
     
     func test_load_deliversErrorOnClientError() {
+        // Arrange: Given the sut and its HTTP client spy
         let (sut, client) = makeSUT()
-
-        client.error = NSError(domain: "Test", code: 0)
+        
+        /*
+         Changed the "Arrange" and "Act" part of the test.
+         Client.error stub was part of Arrange, now client.completions is in Act
+         This is because when the client completes with an error, we want the load to complete with an error also.
+         */
+        
+        // Act: When we tell the sut to load and we complete the client's HTTP request with an error
         var capturedErrors: [RemoteFeedLoader.Error] = []
         sut.load { capturedErrors.append($0) }
         
+        let clientError = NSError(domain: "Test", code: 0)
+        client.completions[0](clientError)
+        
+        // Assert: Then we expect the captured load error to be a connectivity error
         XCTAssertEqual(capturedErrors, [.connectivity])
     }
     
@@ -69,12 +80,10 @@ class RemoteFeedLoaderTest: XCTestCase {
     
     private class HTTPClientSpy: HTTPClient {
         var requestedURLs = [URL]()
-        var error: Error?
+        var completions = [(Error) -> Void]()
         
         func get(from url: URL, completion: @escaping (Error) -> Void) {
-            if let error {
-                completion(error)
-            }
+            completions.append(completion)
             requestedURLs.append(url)
         }
     }
