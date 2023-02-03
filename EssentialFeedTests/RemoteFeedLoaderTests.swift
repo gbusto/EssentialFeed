@@ -15,7 +15,7 @@ class RemoteFeedLoaderTest: XCTestCase {
         XCTAssertNil(client.requestedURL)
     }
     
-    func test_load_requestDataFromURL() {
+    func test_load_requestsDataFromURL() {
         // Load items command
         
         // How can the RemoteFeedLoader invoke the method in the client?
