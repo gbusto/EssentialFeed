@@ -93,14 +93,14 @@ class RemoteFeedLoaderTest: XCTestCase {
                         file: StaticString = #filePath,
                         line: UInt = #line) {
         
-        var capturedErrors: [RemoteFeedLoader.Error] = []
-        sut.load { capturedErrors.append($0) }
+        var capturedResults: [RemoteFeedLoader.Result] = []
+        sut.load { capturedResults.append($0) }
 
         action()
         
         // Adding `file` and `line` params to this function helps ensure that
         // the test error will show on the correct line.
-        XCTAssertEqual(capturedErrors, [error], file: file, line: line)
+        XCTAssertEqual(capturedResults, [.failure(error)], file: file, line: line)
     }
     
     private class HTTPClientSpy: HTTPClient {
