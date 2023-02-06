@@ -28,6 +28,9 @@ extension FeedItem: Decodable {
         case id
         case description
         case location
+        // Red flag! This line below is an API detail that leaked into our feature module.
+        // This creates a tight coupling to the RemoteFeedLoader and is a detail of the RemoteFeedLoader that may not also apply to the LocalFeedLoader for example.
+        // This harmless string in the wrong module can end up breaking our abstractions :(
         case imageURL = "image"
     }
 }
