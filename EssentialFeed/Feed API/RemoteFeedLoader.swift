@@ -7,8 +7,13 @@
 
 import Foundation
 
+public enum HTTPClientResult {
+    case success(HTTPURLResponse)
+    case failure(Error)
+}
+
 public protocol HTTPClient {
-    func get(from url: URL, completion: @escaping (Error?, HTTPURLResponse?) -> Void)
+    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void)
 }
 
 public final class RemoteFeedLoader {
@@ -26,14 +31,11 @@ public final class RemoteFeedLoader {
     }
     
     public func load(completion: @escaping (Error) -> Void) {
-        client.get(from: url) { error, response in
-            if response != nil {
+        client.get(from: url) { result in
+            switch result {
+            case .success:
                 completion(.invalidData)
-            }
-            else {
-                // If this completion is moved outside of the 'else' statement,
-                // one of the tests will fail because load will have called the
-                // completion twice with two different errors!
+            case .failure:
                 completion(.connectivity)
             }
         }
