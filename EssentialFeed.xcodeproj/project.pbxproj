@@ -15,6 +15,7 @@
 		0304F00A298D6D550078D287 /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0304F009298D6BC40078D287 /* RemoteFeedLoader.swift */; };
 		0304F00B299160AB0078D287 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0304F007298D6BC40078D287 /* FeedItem.swift */; };
 		0304F00D2991786B0078D287 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0304F00C2991786B0078D287 /* HTTPClient.swift */; };
+		0304F00F299178D20078D287 /* FeedItemsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0304F00E299178D20078D287 /* FeedItemsMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		0304F007298D6BC40078D287 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 		0304F009298D6BC40078D287 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 		0304F00C2991786B0078D287 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		0304F00E299178D20078D287 /* FeedItemsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				0304F009298D6BC40078D287 /* RemoteFeedLoader.swift */,
+				0304F00E299178D20078D287 /* FeedItemsMapper.swift */,
 				0304F00C2991786B0078D287 /* HTTPClient.swift */,
 			);
 			path = "Feed API";
@@ -224,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0304F00F299178D20078D287 /* FeedItemsMapper.swift in Sources */,
 				0304F00A298D6D550078D287 /* RemoteFeedLoader.swift in Sources */,
 				0304EFE9298C10810078D287 /* EssentialFeed.docc in Sources */,
 				0304F00D2991786B0078D287 /* HTTPClient.swift in Sources */,
