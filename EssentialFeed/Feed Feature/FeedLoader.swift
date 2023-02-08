@@ -7,21 +7,16 @@
 
 import Foundation
 
-/*
- Starting from abstractions bears risk. Example: over-abstracting to accommodate future needs (that may never happen)
- can unnecessarily damage/complicate the current design.
- 
- In the Error case below, we don't know (or need to know yet) all errors this feature may have to handle. So stick with
- generic Error for now.
- 
- Good design is rarely achieved in the first iteration, as it's an evolutionary process.
- */
-
-enum LoadFeedResult {
+// Need this to conform to Equatable, but the Error is generic and don't know if passed error will conform to Equatable
+public enum LoadFeedResult<Error: Swift.Error> {
     case success([FeedItem])
-    case error(Error)
+    case failure(Error)
 }
 
+extension LoadFeedResult: Equatable where Error: Equatable {}
+
 protocol FeedLoader {
-    func load(completion: @escaping (LoadFeedResult) -> Void)
+    associatedtype Error: Swift.Error
+    
+    func load(completion: @escaping (LoadFeedResult<Error>) -> Void)
 }
