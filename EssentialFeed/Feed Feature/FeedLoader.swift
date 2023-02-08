@@ -8,13 +8,11 @@
 import Foundation
 
 // Need this to conform to Equatable, but the Error is generic and don't know if passed error will conform to Equatable
-public enum LoadFeedResult<Error: Swift.Error> {
+public enum LoadFeedResult {
     case success([FeedItem])
     case failure(Error)
 }
 
 protocol FeedLoader {
-    associatedtype Error: Swift.Error
-    
-    func load(completion: @escaping (LoadFeedResult<Error>) -> Void)
+    func load(completion: @escaping (LoadFeedResult) -> Void)
 }
